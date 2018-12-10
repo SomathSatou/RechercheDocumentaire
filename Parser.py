@@ -8,12 +8,18 @@ class Parser:
     def __init__(self):
         Parser.exist = True
 
-    def lectureCorpus(self, listeDocs, listInfo, index):
+    def lectureCorpus(self, listInfo, index, stoplist):
         '''lis chaque corpuus et remplis les clé des fonction
         renvoie le dictionaire
         append sur la liste des documents '''
         pathCorpus = "/home/etudiant/PycharmProjects/RechercheDocumentaire/Ressource/DOC/"
+        pathRessource = "/home/etudiant/PycharmProjects/RechercheDocumentaire/Ressource/"
         listeDocs = os.listdir(pathCorpus)
+
+        fstop = open(pathRessource + "stopwords.txt", "r")
+        stopDoc = fstop.read()
+        for stop in stopDoc.split("\n"):
+            stoplist.append(stop)
 
         indiceCorpus = 0
         for doc in listeDocs:
@@ -25,7 +31,7 @@ class Parser:
             for ligne in files:
                 if ligne == "<DOC>" :
                     indiceDocument += 1
-                regex = re.compile(r'<HEAD>(?P<titre>[\s\w+\-]*)</HEAD>')
+                regex = re.compile(r'<HEAD>(?P<titre>[\W\w+\-]*)</HEAD>')
                 monTitre = re.match(regex, ligne)
                 if monTitre is not None :
                     Titre = monTitre.group('titre')
@@ -94,4 +100,6 @@ class Parser:
     def permaterm(self, text):
         listTerm = []
         return listTerm
+
+    def steming(self):
 

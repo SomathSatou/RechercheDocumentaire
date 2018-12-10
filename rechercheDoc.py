@@ -21,11 +21,11 @@ except ImportError:
     py3 = True
 
 
-def vp_start_gui():
+def vp_start_gui(Controler):
     '''Starting point when module is the main routine.'''
     global val, w, root
     root = tk.Tk()
-    top = Toplevel1 (root)
+    top = Toplevel1 (root,Controler)
     root.mainloop()
 
 w = None
@@ -34,8 +34,8 @@ def create_Toplevel1(root, *args, **kwargs):
     global w, w_win, rt
     rt = root
     w = tk.Toplevel (root)
-    top = Toplevel1 (w)
-    return (w, top)
+    top = Toplevel1 (w,args[0])
+    return top
 
 def destroy_Toplevel1():
     global w
@@ -43,7 +43,8 @@ def destroy_Toplevel1():
     w = None
 
 class Toplevel1:
-    def __init__(self, top=None):
+    def __init__(self, top=None,Controler=None):
+        self.Controler = Controler
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
@@ -65,9 +66,15 @@ class Toplevel1:
         self.Entry1.configure(font="TkFixedFont")
         self.Entry1.configure(width=266)
 
-        self.Button1 = tk.Button(top)
+        def search():
+            self.Controler.rechercherIndex(self.Entry1.get())
+
+        self.Button1 = tk.Button(top,command=search())
         self.Button1.place(relx=0.333, rely=0.225, height=28, width=69)
         self.Button1.configure(text='''Search''')
+
+
+
 
         self.Labelframe1 = tk.LabelFrame(top)
         self.Labelframe1.place(relx=0.017, rely=0.187, relheight=0.356
@@ -138,6 +145,9 @@ class Toplevel1:
         self.Button3 = tk.Button(top)
         self.Button3.place(relx=0.333, rely=0.449, height=28, width=69)
         self.Button3.configure(text='''Button''')
+
+        def sendResultat(self, liste):
+            return
 
 
 if __name__ == '__main__':

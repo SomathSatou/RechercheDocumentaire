@@ -22,6 +22,11 @@ class Controler:
         requete = self.parser.normalize(requete)
         requetes = requete.split()
 
+
+        if parametre[2]:
+            for mot in requetes:
+                for stemo_mot in mot.
+
         return requetes
 
     def rechercherIndex(self, requete, parametre=[0,0,0,0]):  # String[]

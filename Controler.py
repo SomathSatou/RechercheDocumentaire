@@ -30,7 +30,6 @@ class Controler:
             requetes = []
             for mot in requetes2:
                 if mot in self.stem:
-                    print(self.stem[mot])
                     for stem_mot in self.stem[mot]:
                         requetes.append(stem_mot)
                 else:

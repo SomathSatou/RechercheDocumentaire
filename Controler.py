@@ -20,13 +20,15 @@ class Controler:
 
     def traitementRequete(self, requete, parametre):  # String , Boolean[]
         # prepare les elements de la requete
-        return
+        requetes = requete.split()
+        return requetes
 
     def rechercherIndex(self, requete):  # String[]
         # envoie a la vue la liste des documents pertinent trouvé
+        requetes = self.traitementRequete(requete,parametre=[])
         liste = []
-        for elt in requete:
+        print("voici la requete " )
+        print(requetes)
+        for elt in requetes:
             liste.append(self.index.rechercheMot(elt))
-        print(liste)
-        print("hello")
         self.view.sendResultat(liste)

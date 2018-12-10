@@ -11,10 +11,13 @@ class Controler:
         self.index = IndexTree("")
         self.info = []
         self.stoplist = []
+        self.stem = {}
 
     def launch(self):
         # lecture du cropus
+        self.parser.steming(self.stem)
         self.parser.lectureCorpus(self.info, self.index, self.stoplist)
+
         self.tk.mainloop()
 
     def traitementRequete(self, requete, parametre):  # String , Boolean[Stemming,stopList,phrasalqueries,jocker*]

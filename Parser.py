@@ -101,5 +101,14 @@ class Parser:
         listTerm = []
         return listTerm
 
-    def steming(self):
-
+    def steming(self,stemDic):
+        f = open("/home/etudiant/PycharmProjects/RechercheDocumentaire/Ressource/stem.txt", "r")
+        allStem = f.read()
+        list = allStem.split("\n")
+        for elt in list:
+            regex = re.compile(r'(?P<root>[\w+\-]*) \| (?P<words>[\s\w]+)')
+            stem = re.match(regex, elt)
+            if stem is not None:
+                Words = str(stem.group('words'))
+                Words = Words.split()
+                stemDic[str(stem.group('root'))] = Words

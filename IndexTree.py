@@ -19,7 +19,6 @@ class IndexTree:
 
     def rechercheMot(self,mot):
         if mot == "":
-            print(self.ID)
             return self.ID
         else:
             trouve = 0

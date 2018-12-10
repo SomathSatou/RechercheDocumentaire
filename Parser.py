@@ -1,4 +1,6 @@
 from IndexTree import IndexTree
+from InfoDoc import InfoDoc
+
 import re
 import os
 
@@ -23,13 +25,12 @@ class Parser:
             for ligne in files:
                 if ligne == "<DOC>" :
                     indiceDocument += 1
-                regex = re.compile(r'<HEAD>(?P<titre>[\s\w\-])</HEAD>')
+                regex = re.compile(r'<HEAD>(?P<titre>[\s\w+\-]*)</HEAD>')
                 monTitre = re.match(regex, ligne)
                 if monTitre is not None :
-                    print("je reconais un titre")
                     Titre = monTitre.group('titre')
-                    infoDoc = infoDoc(indiceCorpus, indiceDocument, Titre)
-                    listInfo.append(infoDoc)
+                    info = InfoDoc(indiceCorpus, indiceDocument, Titre)
+                    listInfo.append(info)
                 if ligne == "<TEXT>" :
                     lireTexte=1
                 if lireTexte ==1:

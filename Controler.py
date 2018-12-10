@@ -6,8 +6,7 @@ class Controler:
 
     def __init__(self, _parser):
         self.tk = Tk.Tk()
-        self.view = create_Toplevel1(self)
-        self._w = '.'
+        self.view = Toplevel1(self.tk, self)
         self.parser = _parser
         self.docs = []
         self.index = IndexTree("")
@@ -17,7 +16,7 @@ class Controler:
     def launch(self):
         # lecture du cropus
         self.parser.lectureCorpus(self.docs, self.info, self.index)
-        self.view = vp_start_gui(self)
+        self.tk.mainloop()
 
     def traitementRequete(self, requete, parametre):  # String , Boolean[]
         # prepare les elements de la requete
@@ -28,4 +27,6 @@ class Controler:
         liste = []
         for elt in requete:
             liste.append(self.index.rechercheMot(elt))
-        Toplevel1.sendResultat(liste)
+        print(liste)
+        print("hello")
+        self.view.sendResultat(liste)

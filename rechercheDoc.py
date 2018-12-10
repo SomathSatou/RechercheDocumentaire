@@ -29,13 +29,13 @@ def vp_start_gui(Controler):
     root.mainloop()
 
 w = None
-def create_Toplevel1(root, *args, **kwargs):
+def create_Toplevel1(root,controler, *args, **kwargs):
     '''Starting point when module is imported by another program.'''
     global w, w_win, rt
     rt = root
     w = tk.Toplevel (root)
-    top = Toplevel1 (w,args[0])
-    return top
+    top = Toplevel1 (w,controler)
+    return (w,top)
 
 def destroy_Toplevel1():
     global w
@@ -66,15 +66,9 @@ class Toplevel1:
         self.Entry1.configure(font="TkFixedFont")
         self.Entry1.configure(width=266)
 
-        def search():
-            self.Controler.rechercherIndex(self.Entry1.get())
-
-        self.Button1 = tk.Button(top,command=search())
+        self.Button1 = tk.Button(top,command=self.search)
         self.Button1.place(relx=0.333, rely=0.225, height=28, width=69)
         self.Button1.configure(text='''Search''')
-
-
-
 
         self.Labelframe1 = tk.LabelFrame(top)
         self.Labelframe1.place(relx=0.017, rely=0.187, relheight=0.356
@@ -146,8 +140,11 @@ class Toplevel1:
         self.Button3.place(relx=0.333, rely=0.449, height=28, width=69)
         self.Button3.configure(text='''Button''')
 
-        def sendResultat(self, liste):
+    def sendResultat(self, liste):
             return
+
+    def search(self):
+        self.Controler.rechercherIndex(self.Entry1.get())
 
 
 if __name__ == '__main__':

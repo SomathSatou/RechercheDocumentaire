@@ -23,6 +23,7 @@ class Parser:
 
         indiceCorpus = 0
         for doc in listeDocs:
+            titrelu = False
             indiceDocument = 0
             f = open(pathCorpus+doc, "r")
             fichier_entier = f.read()
@@ -34,11 +35,14 @@ class Parser:
                 regex = re.compile(r'<HEAD>(?P<titre>[\W\w+\-]*)</HEAD>')
                 monTitre = re.match(regex, ligne)
                 if monTitre is not None :
-                    Titre = monTitre.group('titre')
-                    info = InfoDoc(indiceCorpus, indiceDocument, Titre)
-                    listInfo.append(info)
+                    if not titrelu :
+                        Titre = monTitre.group('titre')
+                        info = InfoDoc(indiceCorpus, indiceDocument, Titre)
+                        listInfo.append(info)
+                        titrelu = True
                 if ligne == "<TEXT>" :
                     lireTexte=1
+                    titrelu = False
                 if lireTexte ==1:
                     mots = ligne.split(" ")
                     for elt in mots :

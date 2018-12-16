@@ -25,9 +25,9 @@ class IndexTree:
             trouve = 0
             for elt in self.fils:
                 if elt.char == mot[0]:
-                    elt.rechercheMot(mot[1:])
-                    trouve = 1
+                    return elt.rechercheMot(mot[1:])
             if trouve == 0 :
-                return []
+                print("mots non trouvé")
+                return [-1]
 
 

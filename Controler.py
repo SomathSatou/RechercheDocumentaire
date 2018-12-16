@@ -39,34 +39,31 @@ class Controler:
 
         return requetes
 
-<<<<<<< HEAD
     def sortResultat(self, listes ):
-        print(listes)
         tuple = {}
         ret = []
         # a revoir pour éviter les boucles imbriqué
         for elt in listes:
-            if tuple.has_key(elt):
+            if elt in tuple:
                 tuple[elt] = tuple[elt]+1
             else:
                 tuple[elt] = 1
-        tuple = OrderedDict(sorted(tuple.items(), key=lambda t: t[0]))
+        tuple = OrderedDict(sorted(tuple.items(), key=lambda t: t[1], reverse=True))
+        print(tuple)
         for cle in tuple.keys():
             ret.append(cle)
         print(ret)
         return ret
 
-    def rechercherIndex(self, requete, parametre=[0,0,0,0]):  # String[]
-=======
     def rechercherIndex(self, requete, parametre):  # String[]
->>>>>>> bdc087a480042289762fa2a684b51802db783e9d
+
         # envoie a la vue la liste des documents pertinent trouvé
         requetes = self.traitementRequete(requete, parametre)
         liste = []
         #print(requetes)
         for elt in requetes:
-            liste = liste + self.index.rechercheMot(elt)
-        print(liste)
+            add = self.index.rechercheMot(elt)
+            liste = liste + add
         #crée un fonction intermédaire qui renvoie un liste trié par pertinence des docs
         liste = self.sortResultat(liste)
         self.view.sendResultat(liste)

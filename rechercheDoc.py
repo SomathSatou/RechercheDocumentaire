@@ -45,6 +45,8 @@ def destroy_Toplevel1():
 class Toplevel1:
     def __init__(self, top=None,Controler=None):
 
+        self.lastRecherhcehe = []
+
         self.var_stem=tk.IntVar()
         self.var_stoplist=tk.IntVar()
         self.var_pq=tk.IntVar()
@@ -157,7 +159,13 @@ class Toplevel1:
         self.Button3.configure(text='''Button''')
 
     def sendResultat(self, liste):
-            return
+        self.lastRecherhcehe = liste
+        titres = []
+        for elt in liste:
+            titres.append(self.Controler.info[elt].titre)
+        for titre in titres:
+            self.Listbox1.insert(0,titre)
+
 
     def search(self):
         self.Controler.rechercherIndex(self.Entry1.get(), [self.var_stem.get(), self.var_stoplist.get(),self.var_pq.get(),self.var_jocker.get()])

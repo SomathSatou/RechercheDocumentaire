@@ -26,8 +26,20 @@ class Controler:
         requete = self.parser.normalize(requete)
         requetes = requete.split()
 
+        if parametre[0]:
+            requetes2 = requetes
+            requetes = []
+            for mot in requetes2:
+                if mot in self.stem:
+                    for stem_mot in self.stem[mot]:
+                        requetes.append(stem_mot)
+                else:
+                    requetes.append(mot)
+
+
         return requetes
 
+<<<<<<< HEAD
     def sortResultat(self, listes ):
         print(listes)
         tuple = {}
@@ -45,10 +57,13 @@ class Controler:
         return ret
 
     def rechercherIndex(self, requete, parametre=[0,0,0,0]):  # String[]
+=======
+    def rechercherIndex(self, requete, parametre):  # String[]
+>>>>>>> bdc087a480042289762fa2a684b51802db783e9d
         # envoie a la vue la liste des documents pertinent trouvé
         requetes = self.traitementRequete(requete, parametre)
         liste = []
-        print(requetes)
+        #print(requetes)
         for elt in requetes:
             liste = liste + self.index.rechercheMot(elt)
         print(liste)

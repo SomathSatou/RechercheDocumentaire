@@ -2,5 +2,5 @@ class InfoDoc:
 
     def __init__(self,indiceCorpus, indiceDocument, Titre):
         self.corpus = indiceCorpus
-        self.focument = indiceDocument
+        self.document = indiceDocument
         self.titre = Titre

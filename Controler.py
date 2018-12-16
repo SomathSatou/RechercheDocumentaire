@@ -28,16 +28,16 @@ class Controler:
 
         return requetes
 
-    def sortResultat(self,listes):
+    def sortResultat(self, listes ):
+        print(listes)
         tuple = {}
         ret = []
         # a revoir pour éviter les boucles imbriqué
-        for index in range(0,listes.__sizeof__()):
-            for id in listes[index]:
-                if tuple.has_key(id):
-                    tuple[id] = tuple[id]+1
-                else:
-                    tuple[id] = 1
+        for elt in listes:
+            if tuple.has_key(elt):
+                tuple[elt] = tuple[elt]+1
+            else:
+                tuple[elt] = 1
         tuple = OrderedDict(sorted(tuple.items(), key=lambda t: t[0]))
         for cle in tuple.keys():
             ret.append(cle)
@@ -50,7 +50,8 @@ class Controler:
         liste = []
         print(requetes)
         for elt in requetes:
-            liste.append(self.index.rechercheMot(elt))
+            liste = liste + self.index.rechercheMot(elt)
+        print(liste)
         #crée un fonction intermédaire qui renvoie un liste trié par pertinence des docs
         liste = self.sortResultat(liste)
         self.view.sendResultat(liste)

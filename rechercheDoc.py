@@ -44,6 +44,14 @@ def destroy_Toplevel1():
 
 class Toplevel1:
     def __init__(self, top=None,Controler=None):
+
+        self.var_stem=tk.IntVar()
+        self.var_stoplist=tk.IntVar()
+        self.var_pq=tk.IntVar()
+        self.var_jocker=tk.IntVar()
+
+
+
         self.Controler = Controler
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
@@ -83,24 +91,32 @@ class Toplevel1:
                 , relwidth=0.400, bordermode='ignore')
         self.Checkbutton1.configure(justify='left')
         self.Checkbutton1.configure(text='''Stemming''')
+        self.Checkbutton1.configure(variable=self.var_stem)
+
 
         self.Checkbutton2 = tk.Checkbutton(self.Labelframe1)
         self.Checkbutton2.place(relx=0.056, rely=0.421, relheight=0.211
                 , relwidth=0.400, bordermode='ignore')
         self.Checkbutton2.configure(justify='left')
         self.Checkbutton2.configure(text='''Stop list''')
+        self.Checkbutton2.configure(variable=self.var_stoplist)
+
 
         self.Checkbutton3 = tk.Checkbutton(self.Labelframe1)
         self.Checkbutton3.place(relx=0.056, rely=0.632, relheight=0.211
                 , relwidth=0.400, bordermode='ignore')
         self.Checkbutton3.configure(justify='left')
         self.Checkbutton3.configure(text='''Phrasal queries''')
+        self.Checkbutton3.configure(variable=self.var_pq)
+
 
         self.Checkbutton4 = tk.Checkbutton(self.Labelframe1)
         self.Checkbutton4.place(relx=0.556, rely=0.211, relheight=0.211
                 , relwidth=0.344, bordermode='ignore')
         self.Checkbutton4.configure(justify='left')
         self.Checkbutton4.configure(text='''Jocker *''')
+        self.Checkbutton4.configure(variable=self.var_jocker)
+
 
         self.Checkbutton5 = tk.Checkbutton(self.Labelframe1)
         self.Checkbutton5.place(relx=0.556, rely=0.421, relheight=0.211
@@ -144,7 +160,7 @@ class Toplevel1:
             return
 
     def search(self):
-        self.Controler.rechercherIndex(self.Entry1.get())
+        self.Controler.rechercherIndex(self.Entry1.get(), [self.var_stem.get(), self.var_stoplist.get(),self.var_pq.get(),self.var_jocker.get()])
 
 
 if __name__ == '__main__':

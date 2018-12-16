@@ -25,13 +25,24 @@ class Controler:
         requete = self.parser.normalize(requete)
         requetes = requete.split()
 
+        if parametre[0]:
+            requetes2 = requetes
+            requetes = []
+            for mot in requetes2:
+                if mot in self.stem:
+                    for stem_mot in self.stem[mot]:
+                        requetes.append(stem_mot)
+                else:
+                    requetes.append(mot)
+
+
         return requetes
 
-    def rechercherIndex(self, requete, parametre=[0,0,0,0]):  # String[]
+    def rechercherIndex(self, requete, parametre):  # String[]
         # envoie a la vue la liste des documents pertinent trouvé
         requetes = self.traitementRequete(requete, parametre)
         liste = []
-        print(requetes)
+        #print(requetes)
         for elt in requetes:
             liste.append(self.index.rechercheMot(elt))
         #crée un fonction intermédaire qui renvoie un liste trié par pertinence des docs

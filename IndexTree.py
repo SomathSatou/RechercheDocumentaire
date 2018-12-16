@@ -28,6 +28,6 @@ class IndexTree:
                     return elt.rechercheMot(mot[1:])
             if trouve == 0 :
                 print("mots non trouvé")
-                return [-1]
+                return []
 
 

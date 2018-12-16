@@ -36,6 +36,10 @@ class Controler:
                 else:
                     requetes.append(mot)
 
+        if parametre[1]:
+            for elt in requetes :
+                if elt in self.stoplist:
+                    requetes.remove(elt)
 
         return requetes
 

@@ -154,12 +154,13 @@ class Toplevel1:
         self.Button2.place(relx=0.333, rely=0.337, height=28, width=69)
         self.Button2.configure(text='''Collections''')
 
-        self.Button3 = tk.Button(top)
+        self.Button3 = tk.Button(top,command=sys.exit)
         self.Button3.place(relx=0.333, rely=0.449, height=28, width=69)
-        self.Button3.configure(text='''Button''')
+        self.Button3.configure(text='''Exit''')
 
     def sendResultat(self, liste):
         self.lastRecherhcehe = liste
+        self.Listbox1.delete(0,self.Listbox1.size()-1)
         titres = []
         for elt in liste:
             titres.append(self.Controler.info[elt].titre)
